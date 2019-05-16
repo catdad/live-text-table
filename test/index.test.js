@@ -64,6 +64,21 @@ describe('[index]', function () {
     expect(table).to.equal('1 2 3\n');
   });
 
+  it('allows defining a custom cell separator', function () {
+    var table = renderTable({
+      columns: [
+        { size: 1 },
+        { size: 1 },
+        { size: 1 }
+      ],
+      separator: '*|^'
+    }, [
+      ['row', ['1', '2', '3']]
+    ]);
+
+    expect(table).to.equal('1*|^2*|^3\n');
+  });
+
   it('can pad with a custom char', function () {
     var table = renderTable({
       columns: [
@@ -188,7 +203,46 @@ describe('[index]', function () {
     ].join('\n') + '\n');
   });
 
-  it('ignores ansi colors when measuring strings');
+  function red(str) {     return '\u001b[31m' + str + '\u001b[39m'; }
+  function green(str) {   return '\u001b[32m' + str + '\u001b[39m'; }
+  function magenta(str) { return '\u001b[35m' + str + '\u001b[39m'; }
+
+  it('ignores ansi colors when measuring strings in rows', function () {
+    var table = renderTable({
+      columns: [
+        { size: 2 },
+        { size: 4 },
+        { size: 6 }
+      ]
+    }, [
+      ['row', [red('1'), green('2'), magenta('3')]]
+    ]);
+
+    expect(table).to.equal([
+      '\u001b[31m1\u001b[39m  \u001b[32m2\u001b[39m    \u001b[35m3\u001b[39m     '
+    ].join('\n') + '\n');
+  });
+
+  it('allows ansi colors in the custom separator', function () {
+    [red('|'), green(','), magenta(' -- ')].forEach(function (sep) {
+      var table = renderTable({
+        columns: [
+          { size: 2 },
+          { size: 3 },
+          { size: 4 }
+        ],
+        separator: sep
+      }, [
+        ['row', ['1', '2', '3']],
+        ['row', ['45', '67', '89']]
+      ]);
+
+      expect(table).to.equal([
+        '1 ' + sep + '2  ' + sep + '3   ',
+        '45' + sep + '67 ' + sep + '89  '
+      ].join('\n') + '\n');
+    });
+  });
 
   it('prints live, and other console.log calls will print in between', function () {
     var table = renderTable({

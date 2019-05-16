@@ -40,10 +40,11 @@ var align = {
 
 module.exports = function (opts) {
   var columns = opts.columns;
+  var sep = opts.separator || ' ';
+  var sepLength = sep.length;
   var defaultAlign = 'left';
   var defaultChar = ' ';
   var defaultSize = 0;
-  var defaultSep = ' ';
 
   function formatRow(val, idx) {
     if (!columns[idx]) {
@@ -63,8 +64,8 @@ module.exports = function (opts) {
     },
     row: function () {
       console.log([].reduce.call(arguments, function (memo, val, idx) {
-        return memo + formatRow(val, idx) + defaultSep;
-      }, '').slice(0, -1));
+        return memo + formatRow(val, idx) + sep;
+      }, '').slice(0, sepLength * -1));
     }
   };
 
