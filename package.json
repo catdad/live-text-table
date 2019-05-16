@@ -4,7 +4,7 @@
   "description": "live-text-table",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
-    "mock-stdio": "^1.0.3"
+    "mock-stdio": "^1.0.3",
+    "nyc": "^14.1.1"
   }
 }
