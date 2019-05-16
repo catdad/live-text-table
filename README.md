@@ -1,6 +1,7 @@
 # live-text-table
 
-<img src="https://media1.tenor.com/images/22607bdddbe5f1ff86bffad4d592bc88/tenor.gif" style="width: 400px; display: block; margin: 0 auto;">
+<div style="text-align:center"><img src="https://media1.tenor.com/images/22607bdddbe5f1ff86bffad4d592bc88/tenor.gif" width="400px"></div>
+
 
 [![travis][travis.svg]][travis.link]
 [![cov-coveralls][cov-coveralls.svg]][cov-coveralls.link]
