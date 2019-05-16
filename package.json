@@ -1,0 +1,28 @@
+{
+  "name": "live-text-table",
+  "version": "1.0.0",
+  "description": "live-text-table",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catdad/live-text-table.git"
+  },
+  "keywords": [
+    "text",
+    "table",
+    "ascii",
+    "rows",
+    "fancy",
+    "color",
+    "live"
+  ],
+  "author": "Kiril Vatev <vatev.1@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catdad/live-text-table/issues"
+  },
+  "homepage": "https://github.com/catdad/live-text-table#readme"
+}
