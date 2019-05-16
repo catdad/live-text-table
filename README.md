@@ -75,6 +75,8 @@ table.line();
 
 ## Example
 
+Full table example. Feel free to use colors anywhere you'd like to make your tables even prettier!
+
 ```javascript
 const chalk = require('chalk');
 const table = require('live-text-table')({
