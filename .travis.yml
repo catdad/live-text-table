@@ -13,3 +13,19 @@ install:
 script:
   - npm test
   - npm run coverage-report
+
+jobs:
+  include:
+  - stage: npm release
+    if: tag IS present
+    node_js: '12'
+    script: echo "Deploying to npm ..."
+    after_script: skip
+    deploy:
+      provider: npm
+      email: vatev.1+npm@gmail.com
+      api_key:
+        secure: bWNZIKyw3L4VKx2p6MEDJuPW2gb0TAEhsfPdlXyyRxbntgfYb4qhENNkdmmFUZRJ0ZS/rl7/s2fKUzvpt7xYOr4CkpLJvaECv15+71yPYdzinWaXP3QI13IUA8LEJFP0Cx4296RT76vLpxOI2y2HvlE0ieCyQNzEgSYGSDY1XQ0ll4cAlrtrqLfdbgg0f9sVXWtUKgBR2KwaNOll7FODku+VOiG1Sx9ATNgQVTllbecFmBMbqRBIhH3pkEEtsP2Lo4g++6qCWaF+mdUKQwLXdyX+VcuEEOlF4hYoTMWnYyP2wL5m4Jtwi0vPQSn+nphJCE2x6kdKRKV2Z2NLN4uEh2g7a8sKA9Ayu4reyJwTlR6CdBOYcbOMLFXS+05dW9hXpLCC6Vw9P3gCi4Zrt3EhJR5gsx62c+VgBn/6M1+96jrl/CDWepJWr86oBnBZjyTelvhxZIDYdLwDgXKNgUioLHee+pjmE41nxc7N1r7wLTzi7VaJTnHKhNAC1lP8SE62g847+1VNkU9t+7nRrabt0Px5ZhDmbUSnk/ZUvD/QnEctpYE0OVK8HAl0Tz7y9Hsu8fVV17qZ6KgYyuczocn46Wbvgem4ZTYgCKIT/7knAJxz7n3Hb3lvR0lsTLs4gaLkdUyiWrcNSWU6uU8w14IahpZZJ8oK8xEZJG4Fx46I72M=
+      on:
+        tags: true
+        repo: catdad/live-text-table
