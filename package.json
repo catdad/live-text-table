@@ -4,7 +4,7 @@
   "description": "live-text-table",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,13 @@
   "bugs": {
     "url": "https://github.com/catdad/live-text-table/issues"
   },
-  "homepage": "https://github.com/catdad/live-text-table#readme"
+  "homepage": "https://github.com/catdad/live-text-table#readme",
+  "dependencies": {
+    "unstyle": "^0.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "mock-stdio": "^1.0.3"
+  }
 }
