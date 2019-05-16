@@ -4,6 +4,7 @@
   "description": "live-text-table",
   "main": "index.js",
   "scripts": {
+    "coverage-report": "coveralls < coverage/lcov.info",
     "test": "nyc mocha"
   },
   "repository": {
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "mocha": "^6.1.4",
     "mock-stdio": "^1.0.3",
     "nyc": "^14.1.1"
