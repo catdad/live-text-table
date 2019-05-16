@@ -32,6 +32,12 @@ var pad = {
   }
 };
 
+var align = {
+  left: pad.right,
+  right: pad.left,
+  center: pad.center
+};
+
 module.exports = function (opts) {
   var columns = opts.columns;
   var defaultAlign = 'left';
@@ -44,8 +50,8 @@ module.exports = function (opts) {
       return val;
     }
 
-    var align = pad[columns[idx].align] || pad[defaultAlign];
-    return align(val, columns[idx].size || defaultSize, columns[idx].char || defaultChar);
+    var aligner = align[columns[idx].align] || align[defaultAlign];
+    return aligner(val, columns[idx].size || defaultSize, columns[idx].char || defaultChar);
   }
 
   var api = {

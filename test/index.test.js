@@ -50,30 +50,6 @@ describe('[index]', function () {
     expect(table).to.equal('this is line 1\n\nthis is line 3\n');
   });
 
-  it('can left-align rows', function () {
-    var table = renderTable({
-      columns: [
-        { size: 6, align: 'left' }
-      ]
-    }, [
-      ['row', ['a']],
-      ['row', ['ab']],
-      ['row', ['abc']],
-      ['row', ['abcd']],
-      ['row', ['abcde']],
-      ['row', ['abcdef']],
-    ]);
-
-    expect(table).to.equal([
-      '     a',
-      '    ab',
-      '   abc',
-      '  abcd',
-      ' abcde',
-      'abcdef'
-    ].join('\n') + '\n');
-  });
-
   it('uses a single space to separate rows', function () {
     var table = renderTable({
       columns: [
@@ -99,7 +75,31 @@ describe('[index]', function () {
       ['row', ['1', '2', '3']]
     ]);
 
-    expect(table).to.equal('..1 ,,2 pp3\n');
+    expect(table).to.equal('1.. 2,, 3pp\n');
+  });
+
+  it('can left-align rows', function () {
+    var table = renderTable({
+      columns: [
+        { size: 6, align: 'left' }
+      ]
+    }, [
+      ['row', ['a']],
+      ['row', ['ab']],
+      ['row', ['abc']],
+      ['row', ['abcd']],
+      ['row', ['abcde']],
+      ['row', ['abcdef']],
+    ]);
+
+    expect(table).to.equal([
+      'a     ',
+      'ab    ',
+      'abc   ',
+      'abcd  ',
+      'abcde ',
+      'abcdef'
+    ].join('\n') + '\n');
   });
 
   it('can right-align rows', function () {
@@ -117,11 +117,11 @@ describe('[index]', function () {
     ]);
 
     expect(table).to.equal([
-      'a     ',
-      'ab    ',
-      'abc   ',
-      'abcd  ',
-      'abcde ',
+      '     a',
+      '    ab',
+      '   abc',
+      '  abcd',
+      ' abcde',
       'abcdef'
     ].join('\n') + '\n');
   });
@@ -162,6 +162,13 @@ describe('[index]', function () {
       ['row', ['ab', 'bc', 'de']],
       ['row', ['abc', 'def', 'ghi']],
     ]);
+
+    expect(table1).to.equal([
+      'a        b         c',
+      'ab      bc        de',
+      'abc     def      ghi'
+    ].join('\n') + '\n');
+
     var table2 = renderTable({
       columns: [
         { size: 5, align: 'right' },
@@ -174,18 +181,39 @@ describe('[index]', function () {
       ['row', ['abc', 'def', 'ghi']],
     ]);
 
-    expect(table1).to.equal([
+    expect(table2).to.equal([
       '    a    b   c      ',
       '   ab   bc   de     ',
       '  abc   def  ghi    ',
     ].join('\n') + '\n');
-
-    expect(table2).to.equal([
-      'a        b         c',
-      'ab      bc        de',
-      'abc     def      ghi'
-    ].join('\n') + '\n');
   });
 
-  it('prints live, and other console.log calls will print in between');
+  it('ignores ansi colors when measuring strings');
+
+  it('prints live, and other console.log calls will print in between', function () {
+    var table = renderTable({
+      columns: [
+        { size: 5 },
+        { size: 6 }
+      ]
+    }, [
+      ['title', ['my table']],
+      function () { console.log('pineapple'); },
+      ['line', []],
+      function () { console.log('strawberry'); },
+      ['row', ['one', 'two']],
+      function () { console.log('banana'); },
+      ['row', ['three', 'four']]
+    ]);
+
+    expect(table).to.equal([
+      'my table',
+      'pineapple',
+      '',
+      'strawberry',
+      'one   two   ',
+      'banana',
+      'three four  '
+    ].join('\n') + '\n');
+  });
 });
