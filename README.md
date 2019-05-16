@@ -76,6 +76,7 @@ table.line();
 ## Example
 
 ```javascript
+const chalk = require('chalk');
 const table = require('live-text-table')({
   columns: [
     { size: 2, align: 'left' },
@@ -87,9 +88,9 @@ const table = require('live-text-table')({
 
 table.title('My Fruits');
 table.line();
-table.row('#1', 'pineapples', 1234);
-table.row('#2', 'oranges', 5678);
-table.row('#3', 'bananas', 90);
+table.row(chalk.dim('#1'), chalk.cyan('pineapples'), 1234);
+table.row(chalk.dim('#2'), chalk.cyan('oranges'), 5678);
+table.row(chalk.dim('#3'), chalk.cyan('bananas'), 90);
 
 // My Fruits
 //
