@@ -1,7 +1,7 @@
 {
   "name": "live-text-table",
   "version": "1.0.0",
-  "description": "live-text-table",
+  "description": "like text-table, but printing live",
   "main": "index.js",
   "scripts": {
     "coverage-report": "coveralls < coverage/lcov.info",
