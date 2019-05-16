@@ -203,6 +203,36 @@ describe('[index]', function () {
     ].join('\n') + '\n');
   });
 
+  it('does not align when no size is defined', function () {
+    var table = renderTable({
+      columns: [
+        { align: 'left' },
+        { align: 'center' },
+        { align: 'right' }
+      ]
+    }, [
+      ['row', ['a', 'b', 'c']]
+    ]);
+
+    expect(table).to.equal('a b c\n');
+  });
+
+  it('prints with no alignment when colums is not provided in options', function () {
+    var table = renderTable({}, [
+      ['row', ['ab', 'cde', 'fg']]
+    ]);
+
+    expect(table).to.equal('ab cde fg\n');
+  });
+
+  it('can create a table with no options', function () {
+    var table = renderTable(undefined, [
+      ['row', ['ab', 'cde', 'fg']]
+    ]);
+
+    expect(table).to.equal('ab cde fg\n');
+  });
+
   function red(str) {     return '\u001b[31m' + str + '\u001b[39m'; }
   function green(str) {   return '\u001b[32m' + str + '\u001b[39m'; }
   function magenta(str) { return '\u001b[35m' + str + '\u001b[39m'; }

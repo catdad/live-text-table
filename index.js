@@ -39,8 +39,8 @@ var align = {
 };
 
 module.exports = function (opts) {
-  var columns = opts.columns;
-  var sep = opts.separator || ' ';
+  var columns = (opts && opts.columns) || [];
+  var sep = (opts && opts.separator) || ' ';
   var sepLength = sep.length;
   var defaultAlign = 'left';
   var defaultChar = ' ';
